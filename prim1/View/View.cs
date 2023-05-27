@@ -11,9 +11,30 @@ namespace Lab21.View
     {
         public static int countSweets;
 
+
+
+
         public static void PrintGiftList(Sweet[] sweets)
         {
             countSweets = sweets.Count();
+            int choice = 0;
+                try
+                {
+                    Console.WriteLine("Enter the number of prefered sorting:\n\t1. Price Ascending \n\t2. Price Descending \n\t and any other to skip this step");
+                    string input = Console.ReadLine();
+                    choice = int.Parse(input);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Only natural numbers! Try again!");
+                }
+            
+            switch (choice)
+            {
+                case 1: { Array.Sort(sweets, new PriceAscendingComparer()); break; }
+                case 2: { Array.Sort(sweets, new PriceDescendingComparer()); break;}
+                default: { Console.WriteLine("You chose to skip sorting!"); break; }
+            }
 
             Console.WriteLine("\n\n\t\tGiftList:");
             Console.WriteLine("\t\t-----------");
@@ -23,36 +44,25 @@ namespace Lab21.View
             {
                 Sweet sweet = sweets[i];
                 Console.Write("\n{0}:", i + 1);
-                //Sweet.print(sweet);
-                //Console.Write("{0}:\t{1}\t{2} byn\t{3}\t", i + 1, sweet.Name.PadRight(15), sweet.Price.ToString().PadRight(5), sweet.sweetKind.PadRight(10));
                 if (sweet is Cookie cookie && !(sweet is CookieFortune cookief))
                 {
                     cookie.print(cookie);
-
-                    //Console.WriteLine(" {0}", cookie.IsChocolate ? "chocolate".PadRight(15) : "non-chocolate".PadRight(15));
                 }
                 else if (sweet is Candy candy)
                 {
                     candy.print(candy);
-
-                    //Console.WriteLine(" {0}", candy.IsSugarFree ? "sugar-free".PadRight(15) : "full of sugar".PadRight(15));
                 }
                 else if (sweet is Cheesecake cheesecake)
                 {
                     cheesecake.print(cheesecake);
-                    //Console.WriteLine(" {0}", cheesecake.IsBacked ? "was backed".PadRight(15) : "wasn't baked".PadRight(15));
                 }
                 else if (sweet is Cupcake cupcake)
                 {
                     cupcake.print(cupcake);
-
-                    //Console.WriteLine(" {0}", cupcake.IsFrosted ? "has frosting".PadRight(15) : "doesn't have frosting".PadRight(15));
                 }
                 else if (sweet is CookieFortune cookieF)
                 {
                     cookieF.print(cookieF);
-
-                    //Console.WriteLine(" {0}\t{1}", cookieF.IsChocolate ? "chocolate".PadRight(15) : "non-chocolate".PadRight(15), cookieF.HasAnswer ? "the answer is yes".PadRight(15) : "the answer is no".PadRight(15));
                 }
             }
 
