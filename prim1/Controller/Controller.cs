@@ -6,11 +6,30 @@ class Controller
 {
     static void Main(string[] args)
     {
-        // Создаем экземпляр класса SweetCreator
-        SweetCreator sweetCreator = new SweetCreator();
+        Console.WriteLine("Hello!");
+
+        int amount = 0;
+        bool validInput = false;
+
+        while (!validInput || amount <= 0)
+        {
+            Console.Write("Enter the amount of sweets: ");
+            string input = Console.ReadLine();
+            if (amount <= 0) Console.WriteLine("Please, you can't have {0} sweets in your gift, could you?", input);
+
+            try
+            {
+                amount = int.Parse(input);
+                validInput = true;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Only natural numbers! Try again!");
+            }
+        }
 
         // Обращаемся к переменной sweets через экземпляр класса SweetCreator
-        Sweet[] sweets = sweetCreator.sweets;
+        Sweet[] sweets = SweetCreator.CreateSweets(amount);
 
         Gift.PrintGiftList(sweets);
 
