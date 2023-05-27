@@ -13,12 +13,13 @@ class Controller
 
         while (!validInput || amount <= 0)
         {
-            Console.Write("Enter the amount of sweets: ");
-            string input = Console.ReadLine();
-            if (amount <= 0) Console.WriteLine("Please, you can't have {0} sweets in your gift, could you?", input);
-
             try
             {
+                Console.Write("Enter the amount of sweets: ");
+                string input = Console.ReadLine();
+                if ((int.Parse(input)) <= 0) Console.WriteLine("Please, you can't have {0} sweets in your gift, could you?", input);
+
+
                 amount = int.Parse(input);
                 validInput = true;
             }
