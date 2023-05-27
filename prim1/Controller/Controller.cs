@@ -11,6 +11,22 @@ class Controller
         int amount = 0;
         bool validInput = false;
 
+        while (!validInput || amount <= 0)
+        {
+            Console.Write("Enter the amount of sweets: ");
+            string input = Console.ReadLine();
+            if (amount <= 0) Console.WriteLine("Please, you can't have {0} sweets in your gift, could you?", input);
+
+            try
+            {
+                amount = int.Parse(input);
+                validInput = true;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Only natural numbers! Try again!");
+            }
+        }
 
         // Обращаемся к переменной sweets через экземпляр класса SweetCreator
         Sweet[] sweets = SweetCreator.CreateSweets(amount);
