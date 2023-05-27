@@ -10,35 +10,50 @@ namespace Lab21.View
     public class Gift
     {
         public static int countSweets;
+        public static string FormatSweet(Sweet sweet)
+        {
+            if (sweet is Cookie cookie && !(sweet is CookieFortune cookie1))
+            {
+                return string.Format("{0}\t{1} byn\t{2}\t{3}", sweet.Name.PadRight(15), sweet.Price.ToString().PadRight(5), sweet.sweetKind.PadRight(10), cookie.IsChocolate ? "chocolate".PadRight(15) : "non-chocolate".PadRight(15));
+            }
+            else if (sweet is Candy candy)
+            {
+                return string.Format("{0}\t{1} byn\t{2}\t{3}", sweet.Name.PadRight(15), sweet.Price.ToString().PadRight(5), sweet.sweetKind.PadRight(10), candy.IsSugarFree ? "sugar-free".PadRight(15) : "full of sugar".PadRight(15));
+            }
+            else if (sweet is Cheesecake cheesecake)
+            {
+                return string.Format("{0}\t{1} byn\t{2}\t{3}", sweet.Name.PadRight(15), sweet.Price.ToString().PadRight(5), sweet.sweetKind.PadRight(10), cheesecake.IsBacked ? "was backed".PadRight(15) : "wasn't baked".PadRight(15));
+            }
+            else if (sweet is Cupcake cupcake)
+            {
+                return string.Format("{0}\t{1} byn\t{2}\t{3}", sweet.Name.PadRight(15), sweet.Price.ToString().PadRight(5), sweet.sweetKind.PadRight(10), cupcake.IsFrosted ? "has frosting".PadRight(15) : "doesn't have frosting".PadRight(15));
+            }
+            else if (sweet is CookieFortune cookieF)
+            {
+                return string.Format("{0}\t{1} byn\t{2}\t{3}\t{4}", sweet.Name.PadRight(15), sweet.Price.ToString().PadRight(5), sweet.sweetKind.PadRight(10), cookieF.IsChocolate ? "chocolate".PadRight(15) : "non-chocolate".PadRight(15), cookieF.HasAnswer ? "the answer is yes".PadRight(15) : "the answer is no".PadRight(15));
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
         public static void PrintGiftList(Sweet[] sweets)
         {
             countSweets = sweets.Count();
 
-            Console.WriteLine("Gift List:");
-            Console.WriteLine("-----------");
+            Console.WriteLine("\n\n\t\tGiftList:");
+            Console.WriteLine("\t\t-----------");
 
             for (int i = 0; i < countSweets; i++)
             {
                 Sweet sweet = sweets[i];
-                Console.Write("{0}: {1} - {2} byn, {3}, ", i + 1, sweet.Name, sweet.Price, sweet.sweetKind);
-                if (sweet is Cookie cookie)
+                string formattedSweet = FormatSweet(sweet);
+                if (!string.IsNullOrEmpty(formattedSweet))
                 {
-                    Console.WriteLine(" {0}", cookie.IsChocolate ? "chocolate" : "non-chocolate");
-                }
-                else if (sweet is Candy candy)
-                {
-                    Console.WriteLine(" {0}", candy.IsSugarFree ? "sugar-free" : "full of sugar");
-                }
-                else if (sweet is Cheesecake cheesecake)
-                {
-                    Console.WriteLine(" {0}", cheesecake.IsBacked ? "was backed" : "wasn't baked");
-                }
-                else if (sweet is Cupcake cupcake)
-                {
-                    Console.WriteLine(" {0}", cupcake.IsFrosted ? "has frosting" : "doesn't have frosting");
+                    Console.WriteLine("{0}: \t{1}", i + 1, formattedSweet);
                 }
             }
-
         }
     }
 }

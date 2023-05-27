@@ -31,7 +31,7 @@ namespace Lab21.Model
 
             for (int i = 0; i < numberOfSweets; i++)
             {
-                int randomSweetType = random.Next(4); // 0 - candies, 1 - cookies, 2 - cheesecakes, 3 - cupcakes
+                int randomSweetType = random.Next(5); // 0 - candies, 1 - cookies, 2 - cheesecakes, 3 - cupcakes 4 - fortune cookie
 
                 switch (randomSweetType)
                 {
@@ -99,52 +99,27 @@ namespace Lab21.Model
                             sweetKind = "Cupcake"
                         };
                         break;
+                    case 4:
+                        randomCookieIndex = random.Next(cookieNames.Length);
+                        randomCookieName = cookieNames[randomCookieIndex];
+                        randomCookiePrice = (decimal)random.Next(1, 500) / 100;
+                        randomCookieWeight = random.Next(5, 51);
+                        randomCookieIsChocolate = random.Next(2) == 0;
+                        bool randomCookieHasAnswer = random.Next(2) == 0;
+
+                        sweets[i] = new CookieFortune
+                        {
+                            Name = randomCookieName,
+                            Price = randomCookiePrice,
+                            Weight = randomCookieWeight,
+                            IsChocolate = randomCookieIsChocolate,
+                            HasAnswer = randomCookieHasAnswer,
+                            sweetKind = "Fortune Cookie"
+                        };
+                        break;
                 }
             }
             return sweets;
         }
     }
-
 } 
-    
-    
-    
-    
-    
-    
-    
-    //public static Candy[] candies = new Candy[]
-                        //       {
-                        //            new Candy { Name = "Snickers", Price = 0.99m, Weight = 12, IsSugarFree = true , sweetKind = "Candy" },
-                        //            new Candy { Name = "Skittles", Price = 0.49m, Weight = 10,IsSugarFree = false, sweetKind = "Candy" },
-                        //            new Candy { Name = "M&M's", Price = 0.75m, Weight = 15,IsSugarFree = false, sweetKind = "Candy" },
-                        //            new Candy { Name = "Twix", Price = 1.25m, Weight = 20, IsSugarFree = true, sweetKind = "Candy" },
-                        //       };
-                        //public static Cookie[] cookies = new Cookie[]
-                        //       {
-                        //            new Cookie { Name = "Macaron", Price = 0.89m, Weight = 10,IsChocolate = false, sweetKind = "Cookie" },
-                        //            new Cookie { Name = "Gingerbread", Price = 1.75m, Weight = 15,IsChocolate = false, sweetKind = "Cookie" },
-                        //            new Cookie { Name = "Biscotti", Price = 1.05m, Weight = 20, IsChocolate = true, sweetKind = "Cookie" },
-                        //            new Cookie { Name = "Chip", Price = 0.99m, Weight = 14, IsChocolate = true, sweetKind = "Cookie" }
-                        //       };
-
-                        //public static Cheesecake[] cheesecakes = new Cheesecake[]
-                        //       {
-                        //            new Cheesecake { Name = "Orange", Price = 0.89m, Weight = 10,IsBacked = false, sweetKind = "Cheesecake" },
-                        //            new Cheesecake { Name = "Apple", Price = 1.75m, Weight = 15,IsBacked = false, sweetKind = "Cheesecake" },
-                        //            new Cheesecake { Name = "Vanilla", Price = 1.05m, Weight = 20, IsBacked = true, sweetKind = "Cheesecake" },
-                        //            new Cheesecake { Name = "Strawberry", Price = 0.99m, Weight = 14, IsBacked = true, sweetKind = "Cheesecake" }
-                        //       };
-
-                        //public static Cupcake[] cupcakes = new Cupcake[]
-                        //       {
-                        //            new Cupcake { Name = "Brownie", Price = 0.89m, Weight = 10,IsFrosted = false, sweetKind = "Cupcake" },
-                        //            new Cupcake { Name = "Chokolate", Price = 1.75m, Weight = 15,IsFrosted = false, sweetKind = "Cupcake" },
-                        //            new Cupcake { Name = "Fairy", Price = 1.05m, Weight = 20, IsFrosted = true, sweetKind = "Cupcake" },
-                        //            new Cupcake { Name = "Truffle", Price = 0.99m, Weight = 14, IsFrosted = true, sweetKind = "Cupcake" }
-                        //       };
-
-                        //public Sweet[] sweets = candies.Cast<Sweet>().Concat(cookies.Cast<Sweet>()).Concat(cheesecakes.Cast<Sweet>()).Concat(cupcakes.Cast<Sweet>()).ToArray();
-
-                //}
-//}

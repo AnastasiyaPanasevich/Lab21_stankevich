@@ -45,7 +45,10 @@ namespace Lab21.Model
     {
         public bool IsChocolate { get; set; }
     }
-
+    public class CookieFortune : Cookie
+    {
+        public bool HasAnswer { get; set; }
+    }
     public class Cheesecake : Sweet
     {
         public bool IsBacked { get; set; }
